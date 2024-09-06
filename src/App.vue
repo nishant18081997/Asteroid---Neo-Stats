@@ -121,6 +121,7 @@ const currentDate = moment().format('YYYY-MM-DD')
                   v-model="selectStartDate"
                   @update:modelValue="formatDate(selectStartDate)"
                   title=""
+                  :max="currentDate"
                 >
                 </v-date-picker>
               </span>
