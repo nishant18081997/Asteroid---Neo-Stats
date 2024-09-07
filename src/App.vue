@@ -30,7 +30,6 @@ const fetchData = async () => {
 
   const response = await fetch(myRequest)
   const Json = await response.json()
-  console.log(Json)
   responseData.value = Json
   calulateMaxandAverage(Json.near_earth_objects)
 }
@@ -60,14 +59,14 @@ const calulateMaxandAverage = (data) => {
       barcount++
       // (Find max relative velocity and  id
       asteroid.close_approach_data.forEach((approach) => {
-        const velocity = parseFloat(approach.relative_velocity.kilometers_per_hour)
+        const velocity = approach.relative_velocity.kilometers_per_hour
         if (velocity > maxVelocity.value) {
           maxVelocity.value = velocity
           maxVelocityId.value = asteroid.id
         }
 
         //  Find min miss distance id
-        const distance = parseFloat(approach.miss_distance.kilometers)
+        const distance = approach.miss_distance.kilometers
         if (distance < minDistance.value) {
           minDistance.value = distance
           minDistanceId.value = asteroid.id
@@ -87,8 +86,6 @@ const calulateMaxandAverage = (data) => {
     data: barArr
   })
   avgSize.value = totalSize.value / count.value
-
-  console.log(barData.value)
 }
 const currentDate = moment().format('YYYY-MM-DD')
 </script>
